@@ -5,7 +5,7 @@ public class Inv {
         if (texto.length() == 1) {
             return texto;
         } else {
-            return inv(texto.substring(0, texto.length() - 2)) + texto.substring(0, texto.length() - 1);
+            return texto.charAt(texto.length() - 1) + inv(texto.substring(0, texto.length() - 1));
         }
     }
 }
