@@ -5,11 +5,11 @@ public class Main {
     public static void main(String[] args) {
         String res, sel, exp;
         Scanner input = new Scanner(System.in);
-        Fact factorial = new Fact();
-        Sum sumatoria = new Sum();
-        Fib fibonacci = new Fib();
-        Inv invertir = new Inv();
-        Pot potencia = new Pot();
+        Factorial factorial = new Factorial();
+        Sumatoria sumatoria = new Sumatoria();
+        Fibonacci fibonacci = new Fibonacci();
+        Invertir invertir = new Invertir();
+        Potencia potencia = new Potencia();
 
         do {
             System.out.println("Menu \n1. Factorial \n2. Sumatoria \n3. Fibonacci \n4. Invertir texto \n5. Elevar \n0. Salir \nSeleccione: ");

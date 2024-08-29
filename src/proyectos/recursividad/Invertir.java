@@ -1,6 +1,6 @@
 package recursividad;
 
-public class Inv {
+public class Invertir {
     public String inv(String texto){
         if (texto.length() == 1) {
             return texto;

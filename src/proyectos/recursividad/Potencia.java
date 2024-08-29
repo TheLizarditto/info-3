@@ -1,6 +1,6 @@
 package recursividad;
 
-public class Pot {
+public class Potencia {
     public int pot (int base, int exp) {
         if (exp == 1) {
             return base;
