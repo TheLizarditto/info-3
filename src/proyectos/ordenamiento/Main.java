@@ -7,11 +7,13 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
         Pizzeria pizzeria = new Pizzeria();
-        String sel;
+        String sel = "";
 
         do {
-            System.out.println("Seleccione: \n1. Agregar \n2. Modificar \n3. Remover \n4. Ordenar por tiempo \n5. Ordenar por precio \n6. Ordenar por nombre \n0. Salir");
-            sel = input.nextLine();
+            do {
+                System.out.println("Seleccione: \n1. Agregar \n2. Modificar \n3. Remover \n4. Ordenar por tiempo \n5. Ordenar por precio \n6. Ordenar por nombre \n7. Mostrar \n8. Generar pedidos \n0. Salir");
+                sel = input.nextLine();
+            } while (sel == "");
             
             switch (sel) {
                 case "1":
@@ -31,11 +33,19 @@ public class Main {
                     break;
 
                 case "5":
-                
+                    pizzeria.ordenarPrecio();
                     break;
 
                 case "6":
-                    
+                    pizzeria.ordenarNombre();
+                    break;
+
+                case "7":
+                    pizzeria.mostrar();
+                    break;
+
+                case "8":
+                    pizzeria.generarPedidos();
                     break;
 
                 case "0":
@@ -46,11 +56,7 @@ public class Main {
                     System.out.println("Debe ingresar una opcion valida");
                     break;
             }
-
+            System.out.println("\n");
         } while (Integer.parseInt(sel) != 0);
-
-
-    
     }
-
 }
