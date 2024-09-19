@@ -1,6 +1,6 @@
 package recursividad;
 
-public class Fib {
+public class Fibonacci {
     public int fib(int x){
         if (x == 0) {
             return 0;
