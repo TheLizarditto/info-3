@@ -10,22 +10,14 @@ public class Ordenador {
             // ordena por tiempo
             if (pedidos.get(i).getTiempo() < pedidos.get(i - 1).getTiempo()) {
                 aux = pedidos.get(i);
-                pedidos.get(i).setPrecio(pedidos.get(i - 1).getPrecio());
-                pedidos.get(i).setNombre(pedidos.get(i - 1).getNombre());
-                pedidos.get(i).setPrecio(pedidos.get(i - 1).getTiempo());
-                pedidos.get(i - 1).setPrecio(aux.getPrecio());
-                pedidos.get(i - 1).setNombre(aux.getNombre());
-                pedidos.get(i - 1).setPrecio(aux.getTiempo());
-
+                pedidos.set(i, pedidos.get(i - 1));
+                pedidos.set(i - 1, aux);
+                
                 for (int j = i - 1; j > 0; j--) {
                     if (pedidos.get(j).getTiempo() < pedidos.get(j - 1).getTiempo()) {
                         aux = pedidos.get(j);
-                        pedidos.get(j).setPrecio(pedidos.get(j - 1).getPrecio());
-                        pedidos.get(j).setNombre(pedidos.get(j - 1).getNombre());
-                        pedidos.get(j).setPrecio(pedidos.get(j - 1).getTiempo());
-                        pedidos.get(j - 1).setPrecio(aux.getPrecio());
-                        pedidos.get(j - 1).setNombre(aux.getNombre());
-                        pedidos.get(j - 1).setPrecio(aux.getTiempo());
+                        pedidos.set(j, pedidos.get(j - 1));
+                        pedidos.set(j - 1, aux);
                     } else {
                         break;
                     }
@@ -51,26 +43,30 @@ public class Ordenador {
     }
 
     public void quicksort(List<Pedido> pedidos, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        
+        Pedido pivote = pedidos.get(0);
         Pedido temp;
-        int i = left;
-        int j = right;
-        do {
-            while(pedidos.get(j).getNombre().compareTo(pedidos.get(i).getNombre()) < 0 && j > i) j--;
-            if(i < j) {
+        int i, j = right;
+
+        for (i = left; i < pedidos.size(); i++) {
+            if (pedidos.get(i).getNombre().compareTo(pivote.getNombre()) < 0) {
                 temp = pedidos.get(i);
-                pedidos.get(i).setPrecio(pedidos.get(j).getPrecio());
-                pedidos.get(i).setNombre(pedidos.get(j).getNombre());
-                pedidos.get(i).setPrecio(pedidos.get(j).getTiempo());
-                pedidos.get(j).setPrecio(temp.getPrecio());
-                pedidos.get(j).setNombre(temp.getNombre());
-                pedidos.get(j).setPrecio(temp.getTiempo());
-            }
-        } while (i < j);
-        if (left < j) {
-            quicksort(pedidos, left, j - 1);
-        } else {
-            if (i < right) {
-                quicksort(pedidos, i + 1, right);
+        
+                for (j = right; j > 0; j--) {
+                    if (pedidos.get(j).getNombre().compareTo(pivote.getNombre()) > 0) {
+                        pedidos.set(i, pedidos.get(j));
+                        pedidos.set(j, pivote);
+                        pedidos.set(0, temp);
+                        break;
+                    }
+                }
+                
+                quicksort(pedidos, 0, j);
+                quicksort(pedidos, i, pedidos.size() - 1);
+                break;
             }
         }
     }

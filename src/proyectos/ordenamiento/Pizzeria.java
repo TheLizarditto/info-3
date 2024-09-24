@@ -153,18 +153,18 @@ public class Pizzeria {
     }
 
     public void ordenarTiempo() {
-        mostrar();
         System.out.println("Tiempo de ordenamiento: " + ordenamiento.ordenarTiempo(pedidos) + " ms");
+        mostrar();
     }
 
     public void ordenarPrecio() {
-        mostrar();
         System.out.println("Tiempo de ordenamiento: " + ordenamiento.ordenarPrecio(pedidos) + " ms");
+        mostrar();
     }
 
     public void ordenarNombre() {
-        mostrar();
         System.out.println("Tiempo de ordenamiento: " + ordenamiento.ordenarNombre(pedidos) + " ms");
+        mostrar();
     }
 
     public void mostrar() {
