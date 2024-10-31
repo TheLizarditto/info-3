@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 
 public class Invertir {
     public String invertir(int[] x, int n) {

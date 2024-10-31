@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 
 public class Binario {
     public int binario(int n) {

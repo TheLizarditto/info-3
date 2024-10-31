@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 
 public class Conteo {
     public String conteo(int x) {

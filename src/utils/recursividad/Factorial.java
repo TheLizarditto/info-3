@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 
 public class Factorial {
     public int fact(int x){

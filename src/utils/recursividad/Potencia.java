@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 
 public class Potencia {
     public int pot (int base, int exp) {

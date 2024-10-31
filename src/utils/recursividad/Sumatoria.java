@@ -1,4 +1,4 @@
-package proyecto1;
+package recursividad;
 public class Sumatoria {
     public int sum(int x){
         if (x == 1) {

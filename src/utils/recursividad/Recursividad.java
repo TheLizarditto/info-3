@@ -1,7 +1,7 @@
-package proyecto1;
+package recursividad;
 import java.util.Scanner;
 
-public class Main {
+public class Recursividad {
     public static void main(String[] args) {
         String sel, res, res2;
         Scanner input = new Scanner(System.in);
