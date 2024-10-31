@@ -1,4 +1,4 @@
-package ordenamiento;
+package proyecto2;
 import java.util.List;
 
 public class TiempoOrdenamiento {

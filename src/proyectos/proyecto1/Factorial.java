@@ -1,4 +1,5 @@
-package recursividad;
+package proyecto1;
+
 public class Factorial {
     public int fact(int x){
         if (x == 1) {
