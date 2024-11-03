@@ -1,14 +1,15 @@
 package recursividad;
 
 public class Invertir {
-    public String invertir(int[] x) {
-        return invertir(x, x.length);
+    public String invertir(int[] numero) {
+        return invertir(numero, numero.length);
     }
-    public String invertir(int[] x, int n) {
-        if (n == 1) {
-            return String.valueOf(x[0]);
+
+    public String invertir(int[] numero, int cantidadNumeros) {
+        if (cantidadNumeros == 1) {
+            return String.valueOf(numero[0]);
         }
 
-        return String.valueOf(x[n - 1]) + " " + invertir(x, n - 1);
+        return String.valueOf(numero[cantidadNumeros - 1]) + " " + invertir(numero, cantidadNumeros - 1);
     }
 }

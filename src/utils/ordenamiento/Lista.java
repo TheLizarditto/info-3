@@ -17,20 +17,20 @@ public class Lista<T> {
         if (indice >= 0 && indice < lista.size()) {
             lista.set(indice, valor);
         } else {
-            throw new IndexOutOfBoundsException("Indice fuera de rango: " + indice);
+            throw new IndexOutOfBoundsException("Indice fuera de rango, hay " + lista.size() + " elementos");
         }
     }
 
-    public void mostrar() {
-        System.out.println(mostrar(0));
+    public void mostrarValores() {
+        System.out.println(mostrarValores(0));
     }
 
-    public String mostrar(int n) {
+    public String mostrarValores(int n) {
         if (n == lista.size()) {
             return "";
         }
 
-        return lista.get(n) + " " + mostrar(n + 1);
+        return lista.get(n) + " " + mostrarValores(n + 1);
     }
 
     public T get(int i) {

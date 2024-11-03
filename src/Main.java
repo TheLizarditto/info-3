@@ -8,10 +8,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int sel;
+        Random random = new Random();
+        int seleccionEjercio, seleccionProyecto;
 
         // variables del proyecto 1
-        String proyecto;
+        int[] arregloNumeros = {1,2,3,4,5};
+        int[] arregloRandom; // los valores se agregan después dado que la cantidad es definida por el usuario
         Factorial factorial = new Factorial();
         Sumatoria sumatoria = new Sumatoria();
         Potencia potencia = new Potencia();
@@ -19,37 +21,57 @@ public class Main {
         Multiplicar multiplicar = new Multiplicar();
         Invertir invertir = new Invertir();
         Binario binario = new Binario();
-        int[] arreglo = {1,2,3,4,5};
-        int[] array;
 
         // variables del proyecto 2
-        Random random = new Random();
-        int n = 10; // cantidad de valores para los arreglos
         Lista<Integer> listaInt = new Lista<>();
         Lista<Double> listaDouble = new Lista<>();
         Lista<String> listaString = new Lista<>();
         Insercion insercion = new Insercion();
         Shellsort shellsort = new Shellsort();
         Quicksort quicksort = new Quicksort();
-        TiempoOrdenamiento tiempo = new TiempoOrdenamiento();
+        TiempoOrdenamiento tiempoOrdenamiento = new TiempoOrdenamiento();
+        int nPersonalizado; // cantidad de datos para un arreglo pero definido por el usuario
+        
+        System.out.println("------------------------------------------");        
         System.out.println("Bienvenido al proyecto");
+        System.out.println("------------------------------------------ \n");
 
         do {
             System.out.println("------------------------------------------");
-            System.out.println("Elija un proyecto \n1. Recursividad \n2. Ordenamiento \n3. Pila y cola \n4. Pila y cola con lista \n5. Arbol binario \n6. Arbol binario 2 \n7. Arbol binario AVL \n8. Arbol rojinegro \n8. Monticulo binario, tablas de hash y general \n0. Salir \n\nSeleccione: ");
-            proyecto = input.nextLine();
+            seleccionProyecto = seleccionarInt("Elija un proyecto \n" + //
+                                "1. Recursividad \n" + //
+                                "2. Ordenamiento \n" + //
+                                "3. Pila y cola \n" + //
+                                "4. Pila y cola con lista \n" + //
+                                "5. Arbol binario \n" + //
+                                "6. Arbol binario 2 \n" + //
+                                "7. Arbol binario AVL \n" + //
+                                "8. Arbol rojinegro \n" + //
+                                "8. Monticulo binario, tablas de hash y general \n" + //
+                                "0. Salir \n" + //
+                                "\n" + //
+                                "Seleccione: ");
 
-            switch (proyecto) {
-                case "0":
+            switch (seleccionProyecto) {
+                case 0:
                     System.out.println("Fin del programa");
                     break;
 
                 // Recursividad
-                case "1":
+                case 1:
                     do {
-                        sel = seleccionarInt("Elija un ejercicio \n1. Factorial \n2. Sumatoria \n3. Potencia \n4. Conteo \n5. Multiplicar \n6. Invertir \n7. Convertir a binario \n0. Salir del proyecto \nSeleccione: ");
+                        seleccionEjercio = seleccionarInt("Elija un ejercicio \n" + //
+                                                        "1. Factorial \n" + //
+                                                        "2. Sumatoria \n" + //
+                                                        "3. Potencia \n" + //
+                                                        "4. Conteo \n" + //
+                                                        "5. Multiplicar \n" + //
+                                                        "6. Invertir \n" + //
+                                                        "7. Convertir a binario \n" + //
+                                                        "0. Salir del proyecto \n" + //
+                                                        "Seleccione: ");
                 
-                        switch (sel) {
+                        switch (seleccionEjercio) {
                             case 0:
                                 break;
 
@@ -74,7 +96,7 @@ public class Main {
                                 break;
             
                             case 6:
-                                System.out.println("El arreglo invertido es: " + invertir.invertir(arreglo));
+                                System.out.println("El arreglo invertido es: " + invertir.invertir(arregloNumeros));
                                 break;
                             
                             case 7:
@@ -87,22 +109,27 @@ public class Main {
                         }
             
                         System.out.println("\n");
-                    } while (sel != 0);
+                    } while (seleccionEjercio != 0);
                     break;
 
                 // ordenamiento
-                case "2":
+                case 2:
                 do {
-                        sel = seleccionarInt("Elija un ejercicio \n1. Ordenamiento de listas \n2. Mostrar array aleatorio \n3. Tiempo de ordenamiento \n0. Salir del proyecto \nSeleccione: ");
+                        seleccionEjercio = seleccionarInt("Elija un ejercicio \n" + //
+                                                        "1. Ordenamiento de listas \n" + //
+                                                        "2. Mostrar array aleatorio \n" + //
+                                                        "3. Tiempo de ordenamiento \n" + //
+                                                        "0. Salir del proyecto \n" + //
+                                                        "Seleccione: ");
                 
-                        switch (sel) {
+                        switch (seleccionEjercio) {
                             case 0:
                                 break;
 
                             case 1:
-                                n = seleccionarInt("Ingrese la cantidad de datos a cargar: ");
-                                
-                                for (int i = 0; i < n; i ++) {
+                                nPersonalizado = seleccionarInt("Ingrese la cantidad de datos a cargar: ");
+
+                                for (int i = 0; i < nPersonalizado; i ++) {
                                     listaInt.add(random.nextInt(100));
                                     listaDouble.add(random.nextDouble(100));
                                     listaString.add(String.valueOf((char) ('A' +  random.nextInt(26))));
@@ -111,25 +138,25 @@ public class Main {
                                 System.out.println("Ordeno la lista de enteros:\n");
                         
                                 System.out.println("Lista original");
-                                listaInt.mostrar();
+                                listaInt.mostrarValores();
                                 System.out.println(" ");
                         
                                 insercion.ordenarInt(listaInt);
                                 
                                 System.out.println("Lista con insercion");
-                                listaInt.mostrar();
+                                listaInt.mostrarValores();
                                 System.out.println(" ");
                         
                                 shellsort.ordenarInt(listaInt);
                                 
                                 System.out.println("Lista con shellsort");
-                                listaInt.mostrar();
+                                listaInt.mostrarValores();
                                 System.out.println(" ");
                         
                                 quicksort.ordenarInt(listaInt);
                                 
                                 System.out.println("Lista con quicksort");
-                                listaInt.mostrar();
+                                listaInt.mostrarValores();
                                 System.out.println(" ");
                         
             
@@ -137,25 +164,25 @@ public class Main {
                                 System.out.println("Ordeno la lista de double:\n");
                                 
                                 System.out.println("Lista original");
-                                listaDouble.mostrar();
+                                listaDouble.mostrarValores();
                                 System.out.println(" ");
                         
                                 insercion.ordenarDouble(listaDouble);
                         
                                 System.out.println("Lista con insercion");
-                                listaDouble.mostrar();
+                                listaDouble.mostrarValores();
                                 System.out.println(" ");
                         
                                 shellsort.ordenarDouble(listaDouble);
                                 
                                 System.out.println("Lista con shellsort");
-                                listaDouble.mostrar();
+                                listaDouble.mostrarValores();
                                 System.out.println(" ");
                         
                                 quicksort.ordenarDouble(listaDouble);
                                 
                                 System.out.println("Lista con quicksort");
-                                listaDouble.mostrar();
+                                listaDouble.mostrarValores();
                                 System.out.println(" ");
                         
                         
@@ -163,38 +190,38 @@ public class Main {
                                 System.out.println("Ordeno la lista de string:\n");
                         
                                 System.out.println("Lista original");
-                                listaString.mostrar();
+                                listaString.mostrarValores();
                         
                                 insercion.ordenarString(listaString);
                         
                                 System.out.println("Lista con insercion");
-                                listaString.mostrar();
+                                listaString.mostrarValores();
                                 System.out.println(" ");
                                 
                                 shellsort.ordenarString(listaString);
                         
                                 System.out.println("Lista con shellsort");
-                                listaString.mostrar();
+                                listaString.mostrarValores();
                                 System.out.println(" ");
                         
                                 quicksort.ordenarString(listaString);
                                 
                                 System.out.println("Lista con quicksort");
-                                listaString.mostrar();
+                                listaString.mostrarValores();
                                 System.out.println(" ");
                                 break;
             
                             case 2:
-                                n = seleccionarInt("Seleccione la cantidad de elementos del arreglo:");
-                                array = Arreglo.cargarArray(n);
-                                Arreglo.mostrarArray(array);
+                                nPersonalizado = seleccionarInt("Seleccione la cantidad de elementos del arreglo:");
+                                arregloRandom = Arreglo.cargarArray(nPersonalizado);
+                                Arreglo.mostrarArray(arregloRandom);
                                 break;
 
                             case 3:
                                 System.out.println("Mido la velocidad de cada algoritmo de ordenamiento para los 3 tipos de listas");
-                                System.out.println("Insercion: " + tiempo.medirInsercion(listaInt, listaDouble, listaString) + " µS");
-                                System.out.println("Shellsort: " + tiempo.medirShellsort(listaInt, listaDouble, listaString) + " µS");
-                                System.out.println("Quicksort: " + tiempo.medirQuicksort(listaInt, listaDouble, listaString) + " µS");                         
+                                System.out.println("Insercion: " + tiempoOrdenamiento.medirInsercion(listaInt, listaDouble, listaString) + " µS");
+                                System.out.println("Shellsort: " + tiempoOrdenamiento.medirShellsort(listaInt, listaDouble, listaString) + " µS");
+                                System.out.println("Quicksort: " + tiempoOrdenamiento.medirQuicksort(listaInt, listaDouble, listaString) + " µS");                         
                                 break;
                             
                             default:
@@ -203,26 +230,26 @@ public class Main {
                         }
             
                         System.out.println("\n");
-                    } while (sel != 0);
+                    } while (seleccionEjercio != 0);
                         break;
             
                 default:
                     System.out.println("Debe ingresar una opcion del menu");
                     break;
             }
-        } while (Integer.parseInt(proyecto) != 0);
+        } while (seleccionProyecto != 0);
     }
 
     public static int seleccionarInt(String mensaje) {
-        String res;
-        Scanner input2 = new Scanner(System.in);
+        String valor;
+        Scanner input = new Scanner(System.in);
 
         do {
             try {
                 System.out.println(mensaje);
-                res = input2.nextLine();
+                valor = input.nextLine();
                 
-                return Integer.parseInt(res);
+                return Integer.parseInt(valor);
             } catch (Exception e) {
                 System.out.println("Debe ingresar un numero valido");
             }

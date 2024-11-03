@@ -38,12 +38,12 @@ public class Pila {
             return "";
         }
 
-        String retorno = String.valueOf(pila[0]);
+        String cadena = String.valueOf(pila[0]);
 
         for (int i = 1; i < tos; i++) {
-            retorno += pila[i];
+            cadena += pila[i];
         }
         
-        return retorno;
+        return cadena;
     }
 }

@@ -1,11 +1,11 @@
 package recursividad;
 
 public class Binario {
-    public int binario(int n) {
-        if (n == 0) {
+    public int binario(int numero) {
+        if (numero == 0) {
             return 0;
         }
         
-        return (n % 2) + binario(n / 2);
+        return (numero % 2) + binario(numero / 2);
     }
 }

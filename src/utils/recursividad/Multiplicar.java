@@ -1,11 +1,11 @@
 package recursividad;
 
 public class Multiplicar {
-    public int multiplicar(int a, int b) {
-        if (b == 1) {
-            return a;
+    public int multiplicar(int FactorA, int FactorB) {
+        if (FactorB == 1) {
+            return FactorA;
         }
 
-        return a + multiplicar(a, b - 1);
+        return FactorA + multiplicar(FactorA, FactorB - 1);
     }
 }
