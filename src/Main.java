@@ -1,6 +1,7 @@
 // importo el archivo que contiene las consignas de cada proyecto (se hizo así para separar y organizar mejor los ejemplos que se vieron de cada tema)
 import recursividad.*;
 import ordenamiento.*;
+import pila_cola.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -9,7 +10,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
-        int seleccionEjercio, seleccionProyecto;
+        int seleccionEjercicio, seleccionProyecto;
+        String cadena;
 
         // variables del proyecto 1
         int[] arregloNumeros = {1,2,3,4,5};
@@ -31,6 +33,13 @@ public class Main {
         Quicksort quicksort = new Quicksort();
         TiempoOrdenamiento tiempoOrdenamiento = new TiempoOrdenamiento();
         int nPersonalizado; // cantidad de datos para un arreglo pero definido por el usuario
+
+        // variables del proyecto 3
+        Pila pila = new Pila(5); // capacidad para 5 elementos
+        Cola cola = new Cola(5); // capacidad para 5 elementos
+        Palindromo palindromo = new Palindromo(10);
+        Parentesis parentesis = new Parentesis(20);
+
         
         System.out.println("------------------------------------------");        
         System.out.println("Bienvenido al proyecto");
@@ -60,7 +69,7 @@ public class Main {
                 // Recursividad
                 case 1:
                     do {
-                        seleccionEjercio = seleccionarInt("Elija un ejercicio \n" + //
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
                                                         "1. Factorial \n" + //
                                                         "2. Sumatoria \n" + //
                                                         "3. Potencia \n" + //
@@ -71,7 +80,7 @@ public class Main {
                                                         "0. Salir del proyecto \n" + //
                                                         "Seleccione: ");
                 
-                        switch (seleccionEjercio) {
+                        switch (seleccionEjercicio) {
                             case 0:
                                 break;
 
@@ -109,20 +118,20 @@ public class Main {
                         }
             
                         System.out.println("\n");
-                    } while (seleccionEjercio != 0);
+                    } while (seleccionEjercicio != 0);
                     break;
 
                 // ordenamiento
                 case 2:
                 do {
-                        seleccionEjercio = seleccionarInt("Elija un ejercicio \n" + //
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
                                                         "1. Ordenamiento de listas \n" + //
                                                         "2. Mostrar array aleatorio \n" + //
                                                         "3. Tiempo de ordenamiento \n" + //
                                                         "0. Salir del proyecto \n" + //
                                                         "Seleccione: ");
                 
-                        switch (seleccionEjercio) {
+                        switch (seleccionEjercicio) {
                             case 0:
                                 break;
 
@@ -230,9 +239,114 @@ public class Main {
                         }
             
                         System.out.println("\n");
-                    } while (seleccionEjercio != 0);
+                    } while (seleccionEjercicio != 0);
                         break;
             
+                case 3:
+                do {
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Probar las operaciones con pilas \n" + //
+                                                            "2. Comprobacion de palindromos \n" + //
+                                                            "3. Comprobar expresion matematica equilibrada \n" + //
+                                                            "4. Probar las operaciones con colas \n" + //
+                                                            "5. Ordenar una cola \n" + //
+                                                            "0. Salir del proyecto \n" + //
+                                                            "Seleccione: ");
+                        
+                        switch(seleccionEjercicio) {
+                            case 0:
+                                break;
+
+                            case 1:
+                                System.out.println("La pila puede tener solo 5 elementos (se puede cambiar en el codigo) \n");
+                                System.out.println("Comprobamos que la pila esta vacia: ");
+                                if (pila.isEmpty() == true) {
+                                    System.out.println("Correcto");
+                                } else {
+                                    System.out.println("Hay un problema con la pila, informe al programador");
+                                    break;
+                                }
+
+                                System.out.println("Agregamos elementos");
+                                pila.push('a');
+                                pila.push('f');
+                                pila.push('l');
+
+                                System.out.println("El ultimo elemento agregado es: " + pila.top());
+
+                                pila.pop();
+                                System.out.println("Eliminamos el ultimo elemento y volvemos a mostrar el ultimo:" + pila.top());
+
+                                break;
+
+                            case 2:
+                                System.out.println("Ingrese un texto de no mas de 10 caracteres: ");
+                                cadena = input.nextLine();
+
+                                palindromo.llenarPila(cadena);
+                                palindromo.comparar();
+
+                                break;
+                            
+                            case 3:
+                                System.out.println("Ingrese una expresion matematica de no mas de 20 caracteres: ");
+                                cadena = input.nextLine();
+
+                                if(parentesis.equilibrada(cadena)) {
+                                    System.out.println("La expresion esta equilibrada");
+                                } else {
+                                    System.out.println("La expresion no esta equilibrada");
+                                }
+                                break;
+
+                            case 4:
+                                System.out.println("La cola puede tener solo 5 elementos (se puede cambiar en el codigo) \n");
+                                System.out.println("Comprobamos que la cola esta vacia: ");
+                                if (cola.isEmpty() == true) {
+                                    System.out.println("Correcto");
+                                } else {
+                                    System.out.println("Hay un problema con la cola, informe al programador");
+                                    break;
+                                }
+
+                                System.out.println("Agregamos elementos");
+                                cola.enqueue(3);
+                                cola.enqueue(2);
+                                cola.enqueue(5);
+
+                                System.out.println("El ultimo elemento agregado es: " + cola.top());
+
+                                cola.dequeue();
+                                System.out.println("Eliminamos el ultimo elemento y volvemos a mostrar el ultimo: " + String.valueOf(cola.top()));
+                                break;
+
+                            case 5:
+                                System.out.println("Agregue 5 elementos a la cola para ordenarlos y mostrarlos");
+
+                                do {
+                                    cola.dequeue();
+                                } while (!cola.isEmpty());
+
+                                for (int i = 0; i < 5; i++) {
+                                    cola.enqueue(seleccionarInt("Ingrese un numero: "));
+                                }
+
+                                System.out.println(cola);
+                                cola.ordenarAscendente();
+                                System.out.println(cola);
+
+                                break;
+
+                            default:
+                                System.out.println("Debe ingresar una opcion del menu");
+                                break;
+                        }
+
+                        System.out.println(" ");
+                    } while (seleccionEjercicio != 0);
+                    break;
+
+
                 default:
                     System.out.println("Debe ingresar una opcion del menu");
                     break;

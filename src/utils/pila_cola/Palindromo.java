@@ -1,37 +1,41 @@
 package pila_cola;
 
 public class Palindromo {
-    private Pila pila = new Pila();
+    private Pila pila;
     private String cadena;
+    private int caracteres;
 
-    public void acomodar() {
-        this.setCadena(this.getCadena().replace(" ", "").toLowerCase());;
+    public Palindromo(int cantidad) {
+        pila = new Pila(cantidad);
     }
 
     public void llenarPila(String cadena) {
-        for(int i = cadena.length()/2; i < cadena.length(); i++) {
-            pila.push(cadena.charAt(i));
+        if (cadena == null || cadena.isEmpty()) {
+            System.out.println("La cadena está vacía o es nula.");
+            return;
+        }
+        this.cadena = cadena.toLowerCase();  // Convertimos toda la cadena a minúsculas
+        caracteres = cadena.length();
+
+        for (int i = caracteres / 2; i < caracteres; i++) {
+            pila.push(this.cadena.charAt(i));
         }
     }
 
     public void comparar() {
-        for(int i = 0; i < cadena.length()/2; i++){
-            if(cadena.charAt(i) == pila.top()){
+        if (cadena == null) {
+            System.out.println("Error: la cadena no ha sido inicializada. Llama a llenarPila primero.");
+            return;
+        }
+
+        for (int i = 0; i < caracteres / 2; i++) {
+            if (cadena.charAt(i) == pila.top()) {
                 pila.pop();
-            }
-            else{
-                System.out.println("No es palindromo");
+            } else {
+                System.out.println("No es palíndromo");
                 return;
             }
         }
-        System.out.println("Si es palindromo");
-    }
-
-    public void setCadena(String cadena) {
-        this.cadena = cadena;
-    }
-
-    public String getCadena() {
-        return cadena;
+        System.out.println("Sí es palíndromo");
     }
 }
