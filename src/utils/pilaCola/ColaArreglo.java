@@ -1,12 +1,12 @@
-package pila_cola;
+package pilaCola;
 
-public class Cola {
+public class ColaArreglo {
     private int[] cola;
     private int frente; // Índice del primer elemento en la cola
     private int fin;    // Índice donde se agregará el siguiente elemento
     private int tamanioActual; // Tamaño actual de la cola
 
-    public Cola(int capacidad) {
+    public ColaArreglo(int capacidad) {
         cola = new int[capacidad];
         frente = 0;
         fin = -1;

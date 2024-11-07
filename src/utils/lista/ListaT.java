@@ -1,11 +1,12 @@
-package ordenamiento;
+package lista;
 
 import java.util.ArrayList;
 
-public class Lista<T> {
+// permite tener datos de cualquier tipo
+public class ListaT<T> {
     private ArrayList<T> lista;
 
-    public Lista() {
+    public ListaT() {
         lista = new ArrayList<>();
     }
 

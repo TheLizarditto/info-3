@@ -1,20 +1,22 @@
 package ordenamiento;
 
+import lista.ListaT;
+
 public class Quicksort {
     // el vector tiene que recibir el tamaño del array - 1
-    public void ordenarInt(Lista<Integer> lista) {
+    public void ordenarInt(ListaT<Integer> lista) {
         ordenarInt(lista, 0, lista.size() - 1);
     }
 
-    public void ordenarDouble(Lista<Double> lista) {
+    public void ordenarDouble(ListaT<Double> lista) {
         ordenarDouble(lista, 0, lista.size() - 1);
     }
 
-    public void ordenarString(Lista<String> lista) {
+    public void ordenarString(ListaT<String> lista) {
         ordenarString(lista, 0, lista.size() - 1);
     }
 
-    public void ordenarInt(Lista<Integer> lista, int start, int end){
+    public void ordenarInt(ListaT<Integer> lista, int start, int end){
         //caso base
         if(start >= end){
             return;
@@ -51,7 +53,7 @@ public class Quicksort {
         ordenarInt(lista, left + 1, end);
     }
 
-    public void ordenarDouble(Lista<Double> lista, int start, int end){
+    public void ordenarDouble(ListaT<Double> lista, int start, int end){
         //caso base
         if(start >= end){
             return;
@@ -88,7 +90,7 @@ public class Quicksort {
         ordenarDouble(lista, left + 1, end);
     }
 
-    public void ordenarString(Lista<String> lista, int start, int end){
+    public void ordenarString(ListaT<String> lista, int start, int end){
         //caso base
         if(start >= end){
             return;

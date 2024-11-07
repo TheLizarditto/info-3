@@ -1,11 +1,16 @@
-package proyecto5;
+package arbolBinario;
 
 import java.util.Random;
 
 public class Arbol {
-    private Nodo root = new Nodo();
+    private Nodo root;
 
     public Arbol() {
+        root = new Nodo();
+        this.generarValores();
+    }
+
+    public void generarValores() {
         Random random = new Random();
         root.setDato(random.nextInt(26)); // número aleatorio entre 0 y 25
         final int n = 10;
@@ -55,8 +60,11 @@ public class Arbol {
         // Buscar en el subárbol izquierdo o derecho
         return intree(base.getIzquierda(), dato) || intree(base.getDerecha(), dato);
     }
-    
 
+    public boolean isEmpty() {
+        return root == null;
+    }
+    
     public int depth() {
         return this.depth(this.getRoot());
     }
@@ -91,7 +99,71 @@ public class Arbol {
 
         return retorno;
     }
-    
+
+    public void dtree(int dato) {
+        root = borrar(root, dato);
+        if (root != null) {
+            System.out.println("Recorrido inorder después de borrar el nodo:");
+            inorder(root);
+        }
+    }
+
+    private Nodo borrar(Nodo root, int dato) {
+        // Si el árbol está vacío
+        if (root == null) {
+            System.out.println("El valor " + dato + " no se encuentra en el árbol.");
+            return root;
+        }
+
+        // Buscar el nodo a eliminar
+        if (dato < root.getDato()) {
+            root.setIzquierda(borrar(root.getIzquierda(), dato));
+        } else if (dato > root.getDato()) {
+            root.setDerecha(borrar(root.getDerecha(), dato));
+        } else {
+            // Nodo encontrado: caso de nodo con un solo hijo o sin hijos
+            if (root.getIzquierda() == null)
+                return root.getDerecha();
+            else if (root.getDerecha() == null)
+                return root.getIzquierda();
+
+            // Nodo con dos hijos: obtener el sucesor en el recorrido inorder
+            root.setDato(min(root.getDerecha()));
+
+            // Eliminar el sucesor inorder
+            root.setDerecha(borrar(root.getDerecha(), root.getDato()));
+        }
+        return root;
+    }
+
+    private int min(Nodo root) {
+        int min = root.getDato();
+        while (root.getIzquierda() != null) {
+            min = root.getIzquierda().getDato();
+            root = root.getIzquierda();
+        }
+        return min;
+    }
+
+    // Método para imprimir el árbol en forma vertical mejorada
+    public void imprimirArbol() {
+        System.out.println(" ");
+        imprimirArbol(root, "", true);
+        System.out.println(" ");
+    }
+
+    private void imprimirArbol(Nodo nodo, String prefijo, boolean isLeft) {
+        if (nodo != null) {
+            System.out.println(prefijo + (isLeft ? "├── " : "└── ") + nodo.getDato());
+            
+            // Si el nodo actual tiene un hijo izquierdo, usamos "│   " como prefijo, de lo contrario, espacios en blanco
+            String prefijoActual = prefijo + (isLeft ? "│   " : "    ");
+            
+            // Llamada recursiva para el subárbol izquierdo y derecho
+            imprimirArbol(nodo.getIzquierda(), prefijoActual, true);
+            imprimirArbol(nodo.getDerecha(), prefijoActual, false);
+        }
+    }
 
     public Nodo getRoot() {
         return this.root;

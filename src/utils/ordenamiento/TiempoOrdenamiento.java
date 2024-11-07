@@ -1,11 +1,13 @@
 package ordenamiento;
 
+import lista.ListaT;
+
 public class TiempoOrdenamiento {
     private Insercion insercion = new Insercion();
     private Shellsort shellsort = new Shellsort();
     private Quicksort quicksort = new Quicksort();
 
-    public long medirInsercion(Lista<Integer> listaInt, Lista<Double> listaDouble, Lista<String> listaString) {
+    public long medirInsercion(ListaT<Integer> listaInt, ListaT<Double> listaDouble, ListaT<String> listaString) {
         long inicio = System.nanoTime();
         insercion.ordenarInt(listaInt);
         insercion.ordenarDouble(listaDouble);
@@ -14,7 +16,7 @@ public class TiempoOrdenamiento {
         return (System.nanoTime() - inicio) / 1000;
     }
 
-    public long medirShellsort(Lista<Integer> listaInt, Lista<Double> listaDouble, Lista<String> listaString) {
+    public long medirShellsort(ListaT<Integer> listaInt, ListaT<Double> listaDouble, ListaT<String> listaString) {
         long inicio = System.nanoTime();
         shellsort.ordenarInt(listaInt);
         shellsort.ordenarDouble(listaDouble);
@@ -23,7 +25,7 @@ public class TiempoOrdenamiento {
         return (System.nanoTime() - inicio) / 1000;
     }
 
-    public long medirQuicksort(Lista<Integer> listaInt, Lista<Double> listaDouble, Lista<String> listaString) {
+    public long medirQuicksort(ListaT<Integer> listaInt, ListaT<Double> listaDouble, ListaT<String> listaString) {
         long inicio = System.nanoTime();
         quicksort.ordenarInt(listaInt);
         quicksort.ordenarDouble(listaDouble);

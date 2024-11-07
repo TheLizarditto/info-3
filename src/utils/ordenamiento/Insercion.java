@@ -1,7 +1,9 @@
 package ordenamiento;
 
+import lista.ListaT;
+
 public class Insercion {
-    public void ordenarInt(Lista<Integer> array) {
+    public void ordenarInt(ListaT<Integer> array) {
         int aux;
 
         for (int i = 1; i < array.size(); i++) {
@@ -23,7 +25,7 @@ public class Insercion {
         }
     }
 
-    public void ordenarDouble(Lista<Double> array) {
+    public void ordenarDouble(ListaT<Double> array) {
         double aux;
 
         for (int i = 1; i < array.size(); i++) {
@@ -45,7 +47,7 @@ public class Insercion {
         }
     }
 
-    public void ordenarString(Lista<String> array) {
+    public void ordenarString(ListaT<String> array) {
         String aux;
 
         for (int i = 1; i < array.size(); i++) {

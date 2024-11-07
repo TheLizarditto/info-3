@@ -1,12 +1,12 @@
-package pila_cola;
+package pilaCola;
 
-public class Palindromo {
-    private Pila pila;
+public class PalindromoArreglo {
+    private PilaArreglo pila;
     private String cadena;
     private int caracteres;
 
-    public Palindromo(int cantidad) {
-        pila = new Pila(cantidad);
+    public PalindromoArreglo(int cantidad) {
+        pila = new PilaArreglo(cantidad);
     }
 
     public void llenarPila(String cadena) {

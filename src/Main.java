@@ -1,7 +1,10 @@
 // importo el archivo que contiene las consignas de cada proyecto (se hizo así para separar y organizar mejor los ejemplos que se vieron de cada tema)
-import recursividad.*;
 import ordenamiento.*;
-import pila_cola.*;
+import pilaCola.*;
+import pilaColaLista.*;
+import lista.ListaT;
+import recursividad.*;
+import arbolBinario.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -10,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
-        int seleccionEjercicio, seleccionProyecto;
+        int seleccionEjercicio, seleccionProyecto, dato;
         String cadena;
 
         // variables del proyecto 1
@@ -25,9 +28,9 @@ public class Main {
         Binario binario = new Binario();
 
         // variables del proyecto 2
-        Lista<Integer> listaInt = new Lista<>();
-        Lista<Double> listaDouble = new Lista<>();
-        Lista<String> listaString = new Lista<>();
+        ListaT<Integer> listaInt = new ListaT<>();
+        ListaT<Double> listaDouble = new ListaT<>();
+        ListaT<String> listaString = new ListaT<>();
         Insercion insercion = new Insercion();
         Shellsort shellsort = new Shellsort();
         Quicksort quicksort = new Quicksort();
@@ -35,10 +38,20 @@ public class Main {
         int nPersonalizado; // cantidad de datos para un arreglo pero definido por el usuario
 
         // variables del proyecto 3
-        Pila pila = new Pila(5); // capacidad para 5 elementos
-        Cola cola = new Cola(5); // capacidad para 5 elementos
-        Palindromo palindromo = new Palindromo(10);
-        Parentesis parentesis = new Parentesis(20);
+        PilaArreglo pila = new PilaArreglo(5); // capacidad para 5 elementos
+        ColaArreglo cola = new ColaArreglo(5); // capacidad para 5 elementos
+        PalindromoArreglo palindromo = new PalindromoArreglo(10);
+        ParentesisArreglo parentesisArreglo = new ParentesisArreglo(20);
+
+        // variables del proyecto 4
+        Pila pilaLista = new Pila();
+        PilaStr pilaListaStr = new PilaStr();
+        ConversionBinario conversionBinario = new ConversionBinario();
+        Parentesis parentesisLista = new Parentesis();
+
+        // variables del proyecto 5
+        Arbol arbol = new Arbol();
+        
 
         
         System.out.println("------------------------------------------");        
@@ -53,10 +66,9 @@ public class Main {
                                 "3. Pila y cola \n" + //
                                 "4. Pila y cola con lista \n" + //
                                 "5. Arbol binario \n" + //
-                                "6. Arbol binario 2 \n" + //
                                 "7. Arbol binario AVL \n" + //
                                 "8. Arbol rojinegro \n" + //
-                                "8. Monticulo binario, tablas de hash y general \n" + //
+                                "9. Monticulo binario, tablas de hash y general \n" + //
                                 "0. Salir \n" + //
                                 "\n" + //
                                 "Seleccione: ");
@@ -243,7 +255,7 @@ public class Main {
                         break;
             
                 case 3:
-                do {
+                    do {
                         seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
                                                             "1. Probar las operaciones con pilas \n" + //
                                                             "2. Comprobacion de palindromos \n" + //
@@ -292,7 +304,7 @@ public class Main {
                                 System.out.println("Ingrese una expresion matematica de no mas de 20 caracteres: ");
                                 cadena = input.nextLine();
 
-                                if(parentesis.equilibrada(cadena)) {
+                                if(parentesisArreglo.equilibrada(cadena)) {
                                     System.out.println("La expresion esta equilibrada");
                                 } else {
                                     System.out.println("La expresion no esta equilibrada");
@@ -346,11 +358,138 @@ public class Main {
                     } while (seleccionEjercicio != 0);
                     break;
 
+                case 4:
+                    do {
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Probar las operaciones con pilas \n" + //
+                                                            "2. Pila de palabras \n" + //
+                                                            "3. Verificacion de parentesis \n" + //
+                                                            "4. Conversion de decimal a binario \n" + //
+                                                            "5. Probar las operaciones con colas \n" + //
+                                                            "6. Cola de numeros \n" + //
+                                                            "7. Ordenamiento de colas \n" + //
+                                                            "8. Verificacion de palindromos \n" + //
+                                                            "0. Salir del proyecto \n" + //
+                                                            "Seleccione: ");
+                        
+                        switch(seleccionEjercicio) {
+                            case 0:
+                                break;
+
+                            case 1:
+                                System.out.println("Comprobamos que la pila esta vacia: ");
+                                if (pilaLista.isEmpty() == true) {
+                                    System.out.println("Correcto");
+                                } else {
+                                    System.out.println("Hay un problema con la pila, informe al programador");
+                                    break;
+                                }
+
+                                System.out.println("Agregamos elementos");
+                                pilaLista.push(4);
+                                pilaLista.push(5);
+                                pilaLista.push(1);
+
+                                System.out.println("El ultimo elemento agregado es: " + pilaLista.top());
+
+                                pilaLista.pop();
+                                System.out.println("Eliminamos el ultimo elemento y volvemos a mostrar el ultimo:" + pilaLista.top());
+
+                                System.out.println(" ");
+                                break;
+
+                            case 2:
+                                System.out.println("Ingrese palabras para agregar en la pila (deje en blanco para terminar)");
+                                do {
+                                    System.out.println("Ingrese una palabra: ");
+                                    cadena = input.nextLine();
+                                    pilaListaStr.push(cadena);
+
+                                } while (cadena != "");
+
+                                System.out.println(pilaListaStr.mostrarInverso());
+
+                                break;
+                            
+                            case 3:
+                                System.out.println("Ingrese una expresion matematica de no mas de 20 caracteres: ");
+                                cadena = input.nextLine();
+
+                                if(parentesisLista.equilibrada(cadena)) {
+                                    System.out.println("La expresion esta equilibrada");
+                                } else {
+                                    System.out.println("La expresion no esta equilibrada");
+                                }
+                                break;
+
+                            case 4:
+                                System.out.println(conversionBinario.convertir(seleccionarInt("Ingrese un numero para convertir a binario: ")));
+                                break;
+
+                            case 5:
+                                break;
+
+                            case 6:
+                                break;
+                            
+                            case 7:
+                                break;
+                            
+                            case 8:
+                                break;
+                            
+                            default:
+                                System.out.println("Debe ingresar una opcion del menu");
+                                break;
+                        }
+                    } while (seleccionEjercicio != 0);
+                    break;
+
+                case 5:
+                    do {
+                            seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                                "1. Recorrer en orden \n" + //
+                                                                "2. Revisar profundidad \n" + //
+                                                                "3. Borrar elemento \n" + //
+                                                                "4. Imprimir \n" + //                                                
+                                                                "0. Salir del proyecto \n" + //
+                                                                "Seleccione: ");
+                            
+                            switch(seleccionEjercicio) {
+                                case 0:
+                                    break;
+
+                                case 1:
+                                    System.out.println("Estos son los datos: " + arbol.inorder());
+                                    break;
+                                
+                                case 2:
+                                    System.out.println("El arbol tiene " + arbol.depth() + " niveles");
+                                    break;
+
+                                case 3:
+                                    dato = seleccionarInt("Elija el valor a eliminar: ");
+                                    arbol.dtree(dato);
+                                    break;
+                                case 4:
+                                    arbol.imprimirArbol();
+                                    break;
+                                default:
+                                    System.out.println("Debe ingresar una opcion del menu");
+                                    break;
+                            }
+
+                            System.out.println(" ");
+                        } while (seleccionEjercicio != 0);
+                    break;
+
 
                 default:
                     System.out.println("Debe ingresar una opcion del menu");
                     break;
             }
+
+            System.out.println(" ");
         } while (seleccionProyecto != 0);
     }
 
@@ -365,7 +504,7 @@ public class Main {
                 
                 return Integer.parseInt(valor);
             } catch (Exception e) {
-                System.out.println("Debe ingresar un numero valido");
+                System.out.println("Debe ingresar un numero");
             }
         } while (true);
     }

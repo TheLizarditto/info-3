@@ -1,11 +1,11 @@
-package pila_cola;
+package pilaCola;
 
-public class Pila {
+public class PilaArreglo {
     private char[] pila;
     private int tos;
 
     // Crea una clase que represente una pila utilizando un arreglo
-    public Pila(int capacidad) {
+    public PilaArreglo(int capacidad) {
         pila = new char[capacidad];
         tos = -1;
     }

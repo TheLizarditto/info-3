@@ -1,10 +1,10 @@
-package pila_cola;
+package pilaCola;
 
-public class Parentesis {
-    private Pila pila;
+public class ParentesisArreglo {
+    private PilaArreglo pila;
 
-    public Parentesis(int cantidad) {
-        pila = new Pila(cantidad);
+    public ParentesisArreglo(int cantidad) {
+        pila = new PilaArreglo(cantidad);
     }
 
     public boolean equilibrada(String expresion) {
@@ -27,10 +27,6 @@ public class Parentesis {
             }
         }
 
-        if (pila.isEmpty() == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return pila.isEmpty();
     }
 }

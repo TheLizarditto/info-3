@@ -1,4 +1,4 @@
-package proyecto5;
+package arbolBinario;
 
 public class Nodo {
     private int dato;

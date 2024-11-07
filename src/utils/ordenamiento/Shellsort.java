@@ -1,7 +1,9 @@
 package ordenamiento;
 
+import lista.ListaT;
+
 public class Shellsort {
-    public void ordenarInt(Lista<Integer> array) {
+    public void ordenarInt(ListaT<Integer> array) {
             // ordena por precio
         for (int gap = array.size()/2; gap > 0; gap /= 2) {
             for (int i = gap; i < array.size(); i++) {
@@ -15,7 +17,7 @@ public class Shellsort {
         }
     }
 
-    public void ordenarDouble(Lista<Double> array) {
+    public void ordenarDouble(ListaT<Double> array) {
             // ordena por precio
         for (int gap = array.size()/2; gap > 0; gap /= 2) {
             for (int i = gap; i < array.size(); i++) {
@@ -30,7 +32,7 @@ public class Shellsort {
         }
     }
 
-    public void ordenarString(Lista<String> array) {
+    public void ordenarString(ListaT<String> array) {
             // ordena por precio
         for (int gap = array.size()/2; gap > 0; gap /= 2) {
             for (int i = gap; i < array.size(); i++) {

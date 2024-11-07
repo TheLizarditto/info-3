@@ -1,4 +1,4 @@
-package proyecto5;
+package arbolBinario;
 
 import java.util.Random;
 
