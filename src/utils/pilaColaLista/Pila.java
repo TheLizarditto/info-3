@@ -12,18 +12,18 @@ public class Pila {
         head = nuevo;
     }
 
-    public void pop() {
+    public boolean pop() {
         if (head == null) {
-            System.out.println("La pila esta vacia");
-            return;
+            return true;
         }
         head = head.getSiguiente();
+        return false;
     }
 
     // Devuelve el último elemento agregado sin eliminarlo
     public int top() {
         if (this.isEmpty()) {
-            return 0; // valor inválido si la pila está vacía
+            throw new RuntimeException("La cola esta vacia");
         }
         return head.getDato();
     }

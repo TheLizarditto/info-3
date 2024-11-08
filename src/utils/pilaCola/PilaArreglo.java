@@ -12,7 +12,7 @@ public class PilaArreglo {
 
     public void push(char x) {
         if (tos + 1 > pila.length) {
-            throw new StackOverflowError("La pila está llena.");
+            throw new StackOverflowError("La pila esta llena");
         }
 
         pila[++tos] = x;
@@ -20,7 +20,7 @@ public class PilaArreglo {
 
     public void pop() {
         if (isEmpty()) {
-            throw new IllegalStateException("La pila está vacía.");
+            throw new IllegalStateException("La pila esta vacia");
         }
 
         tos--;

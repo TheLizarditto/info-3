@@ -5,6 +5,7 @@ import pilaColaLista.*;
 import lista.ListaT;
 import recursividad.*;
 import arbolBinario.*;
+import arbolAVL.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class Main {
         // variables del proyecto 3
         PilaArreglo pila = new PilaArreglo(5); // capacidad para 5 elementos
         ColaArreglo cola = new ColaArreglo(5); // capacidad para 5 elementos
-        PalindromoArreglo palindromo = new PalindromoArreglo(10);
+        PalindromoArreglo palindromoArreglo = new PalindromoArreglo(10);
         ParentesisArreglo parentesisArreglo = new ParentesisArreglo(20);
 
         // variables del proyecto 4
@@ -48,9 +49,17 @@ public class Main {
         PilaStr pilaListaStr = new PilaStr();
         ConversionBinario conversionBinario = new ConversionBinario();
         Parentesis parentesisLista = new Parentesis();
+        Cola colaLista = new Cola();
+        ColaNumeros colaNumeros = new ColaNumeros();
+        Palindromo palindromo = new Palindromo();
+        boolean popError;
 
         // variables del proyecto 5
         Arbol arbol = new Arbol();
+
+        // variables del proyecto 7
+        ArbolAVL arbolAVL = new ArbolAVL();
+        boolean banderaArbolAVL = false;
         
 
         
@@ -129,7 +138,7 @@ public class Main {
                                 break;
                         }
             
-                        System.out.println("\n");
+                        System.out.println(" ");
                     } while (seleccionEjercicio != 0);
                     break;
 
@@ -249,8 +258,8 @@ public class Main {
                                 System.out.println("La opcion ingresada no existe");
                                 break;
                         }
-            
-                        System.out.println("\n");
+                                    
+                        System.out.println(" ");
                     } while (seleccionEjercicio != 0);
                         break;
             
@@ -272,6 +281,7 @@ public class Main {
                             case 1:
                                 System.out.println("La pila puede tener solo 5 elementos (se puede cambiar en el codigo) \n");
                                 System.out.println("Comprobamos que la pila esta vacia: ");
+                                
                                 if (pila.isEmpty() == true) {
                                     System.out.println("Correcto");
                                 } else {
@@ -295,8 +305,8 @@ public class Main {
                                 System.out.println("Ingrese un texto de no mas de 10 caracteres: ");
                                 cadena = input.nextLine();
 
-                                palindromo.llenarPila(cadena);
-                                palindromo.comparar();
+                                palindromoArreglo.llenarPila(cadena);
+                                palindromoArreglo.comparar();
 
                                 break;
                             
@@ -314,6 +324,7 @@ public class Main {
                             case 4:
                                 System.out.println("La cola puede tener solo 5 elementos (se puede cambiar en el codigo) \n");
                                 System.out.println("Comprobamos que la cola esta vacia: ");
+
                                 if (cola.isEmpty() == true) {
                                     System.out.println("Correcto");
                                 } else {
@@ -366,7 +377,7 @@ public class Main {
                                                             "3. Verificacion de parentesis \n" + //
                                                             "4. Conversion de decimal a binario \n" + //
                                                             "5. Probar las operaciones con colas \n" + //
-                                                            "6. Cola de numeros \n" + //
+                                                            "6. Cola de numeros y la suma de los valores \n" + //
                                                             "7. Ordenamiento de colas \n" + //
                                                             "8. Verificacion de palindromos \n" + //
                                                             "0. Salir del proyecto \n" + //
@@ -378,6 +389,7 @@ public class Main {
 
                             case 1:
                                 System.out.println("Comprobamos que la pila esta vacia: ");
+
                                 if (pilaLista.isEmpty() == true) {
                                     System.out.println("Correcto");
                                 } else {
@@ -392,14 +404,17 @@ public class Main {
 
                                 System.out.println("El ultimo elemento agregado es: " + pilaLista.top());
 
-                                pilaLista.pop();
+                                popError = pilaLista.pop();
+                                if(popError == true) {
+                                    System.out.println("La pila esta vacia, error al eliminar");
+                                }
                                 System.out.println("Eliminamos el ultimo elemento y volvemos a mostrar el ultimo:" + pilaLista.top());
 
-                                System.out.println(" ");
                                 break;
 
                             case 2:
                                 System.out.println("Ingrese palabras para agregar en la pila (deje en blanco para terminar)");
+
                                 do {
                                     System.out.println("Ingrese una palabra: ");
                                     cadena = input.nextLine();
@@ -412,10 +427,10 @@ public class Main {
                                 break;
                             
                             case 3:
-                                System.out.println("Ingrese una expresion matematica de no mas de 20 caracteres: ");
+                                System.out.println("Ingrese una expresion matematica: ");
                                 cadena = input.nextLine();
 
-                                if(parentesisLista.equilibrada(cadena)) {
+                                if(parentesisLista.chequearExpresion(cadena)) {
                                     System.out.println("La expresion esta equilibrada");
                                 } else {
                                     System.out.println("La expresion no esta equilibrada");
@@ -427,21 +442,71 @@ public class Main {
                                 break;
 
                             case 5:
+                                System.out.println("Comprobamos que la cola esta vacia: ");
+
+                                if (colaLista.isEmpty() == true) {
+                                    System.out.println("Correcto");
+                                } else {
+                                    System.out.println("Hay un problema con la cola, informe al programador");
+                                    break;
+                                }
+
+                                System.out.println("Agregamos elementos");
+                                colaLista.enqueue(4);
+                                colaLista.enqueue(5);
+                                colaLista.enqueue(1);
+
+                                System.out.println("El ultimo elemento agregado es: " + colaLista.top());
+
+                                popError = colaLista.dequeue();
+                                if(popError == true) {
+                                    System.out.println("La cola esta vacia, error al eliminar");
+                                }
+                                System.out.println("Eliminamos el ultimo elemento y volvemos a mostrar el ultimo: " + colaLista.top());
                                 break;
 
                             case 6:
+                                do {
+                                    dato = seleccionarInt("Ingrese un numero (0 para terminar): ");
+                                    colaNumeros.enqueue(dato);
+                                } while (dato != 0);
+
+                                System.out.println("La suma de los valores es: " + colaNumeros.sumatoria());
                                 break;
                             
                             case 7:
+                                while (!colaLista.isEmpty()) {
+                                    colaLista.dequeue();
+                                }
+
+                                do {
+                                    dato = seleccionarInt("Ingrese un numero (0 para terminar): ");
+                                    colaLista.enqueue(dato);
+                                } while (dato != 0);
+
+                                colaLista.ordenar();
+                                System.out.println(colaLista);
                                 break;
                             
                             case 8:
+                                do {
+                                    System.out.println("Ingrese una palabra para verificar (deje vacio para terminar): ");
+                                    cadena = input.nextLine();
+
+                                    if(palindromo.esPalindromo(cadena)) {
+                                        System.out.println("Es palindromo");
+                                    } else {
+                                        System.out.println("No es palindromo");
+                                    }
+                                } while (cadena != "");
                                 break;
                             
                             default:
                                 System.out.println("Debe ingresar una opcion del menu");
                                 break;
                         }
+                        
+                        System.out.println(" ");
                     } while (seleccionEjercicio != 0);
                     break;
 
@@ -483,6 +548,40 @@ public class Main {
                         } while (seleccionEjercicio != 0);
                     break;
 
+                case 7:
+                    do {
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Insertar valores \n" + //
+                                                            "2. Imprimir \n" + //   
+                                                            "3. Eliminar valor del arbol \n" + //                                               
+                                                            "0. Salir del proyecto \n" + //
+                                                            "Seleccione: ");
+                        
+                        switch(seleccionEjercicio) {
+                            case 0:
+                                break;
+
+                            case 1:
+                                arbolAVL.insertar(seleccionarInt("Ingrese el valor para insertar: "));                    
+                                break;
+                            
+                            case 2:
+                                System.out.println("Estos son los datos en orden: ");
+                                arbolAVL.inOrder();
+                                break;
+
+                            case 3:
+                                arbolAVL.eliminar(seleccionarInt("Ingrese el valor a eliminar: "));
+                                break;
+
+                            default:
+                                System.out.println("Debe ingresar una opcion del menu");
+                                break;
+                        }
+
+                        System.out.println(" ");
+                    } while (seleccionEjercicio != 0);
+                break;
 
                 default:
                     System.out.println("Debe ingresar una opcion del menu");
@@ -492,7 +591,7 @@ public class Main {
             System.out.println(" ");
         } while (seleccionProyecto != 0);
     }
-
+    
     public static int seleccionarInt(String mensaje) {
         String valor;
         Scanner input = new Scanner(System.in);

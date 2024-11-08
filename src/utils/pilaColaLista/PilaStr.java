@@ -23,7 +23,7 @@ public class PilaStr {
     // Devuelve el último elemento agregado sin eliminarlo
     public String top() {
         if (this.isEmpty()) {
-            return ""; // valor inválido si la pila está vacía
+            throw new RuntimeException("La cola esta vacia");
         }
         return head.getDato();
     }

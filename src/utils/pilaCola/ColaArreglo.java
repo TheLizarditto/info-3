@@ -35,7 +35,7 @@ public class ColaArreglo {
 
     public int top() {
         if (isEmpty()) {
-            return -1; // Retorna un valor inválido si la cola está vacía
+            throw new RuntimeException("La cola esta vacia");
         }
         return cola[frente];
     }
