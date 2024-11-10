@@ -601,13 +601,23 @@ public class Main {
                                 break;
 
                             case 1:
-                                arbolRojinegro.insertar(seleccionarInt("Ingrese el valor para insertar: "));                    
+                                do {
+                                    dato = seleccionarInt("Ingrese el valor para insertar (0 para terminar): ");
+                                    arbolRojinegro.insertar(dato);
+                                    arbolRojinegro.mostrarArbol();
+                                } while (dato != 0);
                                 break;
                             
                             case 2:
+                                if(arbolRojinegro.verificarPropiedades()) {
+                                    System.out.println("Se cumplen todas las propiedades del arbol rojinegro");
+                                } else {
+                                    System.out.println("No se cumplen las propiedades del arbol rojinegro");
+                                }
                                 break;
 
                             case 3:
+                                System.out.println("La altura negra del arbol es: " + arbolRojinegro.alturaNegra());
                                 break;
 
                             default:
