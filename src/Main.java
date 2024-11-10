@@ -7,15 +7,25 @@ import recursividad.*;
 import arbolBinario.*;
 import arbolAVL.*;
 import arbolRojinegro.*;
+import monticuloBinario.*;
+import hashTabla.*;
+import persona.Persona;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.LinkedList;
+import java.util.LinkedHashMap;
+import java.util.TreeMap;
+
 
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
-        int seleccionEjercicio, seleccionProyecto, dato;
+        int seleccionEjercicio, seleccionProyecto, dato, veces, datoExtra;
         String cadena;
 
         // variables del proyecto 1
@@ -62,9 +72,18 @@ public class Main {
         ArbolAVL arbolAVL = new ArbolAVL();
         boolean banderaArbolAVL = false;
 
-        //variables del proyecto 8
+        // variables del proyecto 8
         ArbolRojinegro arbolRojinegro = new ArbolRojinegro();
-        
+
+        // variables de proyecto 9
+        MonticuloMinimo monticuloMinimo = new MonticuloMinimo();
+        HashTabla hashTabla = new HashTabla();
+        ArrayList<Persona> listaPersonas = new ArrayList<>();
+        LinkedList<Persona> listaEnlazadaPersonas = new LinkedList<>();
+        HashMap<Integer, Persona> hashPersonas = new HashMap<>();
+        TreeMap<Integer, Persona> mapaPersonas = new TreeMap<>();
+        LinkedHashMap<Integer, TreeMap<Integer, Persona>> hashMapEnlazado = new LinkedHashMap<>();
+        TreeMap<Integer, Persona> arbol1 = new TreeMap<>();
 
         
         System.out.println("------------------------------------------");        
@@ -620,6 +639,362 @@ public class Main {
                                 System.out.println("La altura negra del arbol es: " + arbolRojinegro.alturaNegra());
                                 break;
 
+                            default:
+                                System.out.println("Debe ingresar una opcion del menu");
+                                break;
+                        }
+
+                        System.out.println(" ");
+                    } while (seleccionEjercicio != 0);
+                    break;
+
+                case 9:
+                    do {
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Probar las operaciones con monticulo minimo \n" + //
+                                                            "2. Probar las operaciones con tablas de hash \n" + //
+                                                            "3. Probar la implementacion de ArrayList \n" + //
+                                                            "4. Probar la implementacion de LinkedList \n" + //
+                                                            "5. Probar la implementacion de HashMap \n" + //
+                                                            "6. Probar la implementacion de TreeMap \n" + //
+                                                            "7. Probar la implementacion de LinkedHashMap \n" + //
+                                                            "0. Salir del proyecto \n" + //
+                                                            "Seleccione: ");
+                        
+                        switch(seleccionEjercicio) {
+                            case 0:
+                                break;
+
+                            case 1:
+                                System.out.println("Comprobamos que el monticulo esta vacio: ");
+
+                                if (monticuloMinimo.isEmpty()) {
+                                    System.out.println("Correcto");
+                                } else {
+                                    System.out.println("Hay un problema con el monticulo, informe al programador");
+                                    break;
+                                }
+
+                                System.out.println("Agregamos elementos");
+                                monticuloMinimo.insertar(3);
+                                monticuloMinimo.insertar(5);
+                                monticuloMinimo.insertar(2);
+                                monticuloMinimo.insertar(1);
+                                monticuloMinimo.insertar(9);
+
+                                System.out.println("El monticulo tiene los siguiente valores: \n" + monticuloMinimo);
+                                break;
+                            
+                            case 2:
+                                do{
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                                                "1. Insertar \n" + //
+                                                                "2. Buscar \n" + //
+                                                                "3. Eliminar \n" + //
+                                                                "0. Salir del proyecto \n" + //
+                                                                "Seleccione: ");
+
+                                    switch(dato) {
+                                        case 0:
+                                            break;
+
+                                        case 1:
+                                            hashTabla.insertar(seleccionarInt("Elija un valor entre 0 y 99: "));
+                                            break;
+
+                                        case 2:
+                                            veces = hashTabla.buscar(seleccionarInt("Ingrese el valor a buscar: "));
+                                            System.out.println("El valor se encuentra en la tabla " + veces + " veces");
+                                            break;
+                                        
+                                        case 3:
+                                            hashTabla.eliminar(seleccionarInt("Ingrese el valor a eliminar: "));
+                                            break;
+
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    break;
+                                }while(dato != 0);
+                                break;
+
+                            case 3:
+                                do{
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                                                "1. Insertar \n" + //
+                                                                "2. Imprimir la lista entera \n" + //
+                                                                "3. Imprimir un elemento \n" + //
+                                                                "4. Borrar un elemento \n" + //
+                                                                "0. Salir del proyecto \n" + //
+                                                                "Seleccione: ");
+
+                                    switch(dato) {
+                                        case 0:
+                                            break;
+                                        
+                                        case 1:
+                                            System.out.println("Ingrese el nombre: ");
+                                            cadena = input.nextLine();
+                                            listaPersonas.add(new Persona(cadena, seleccionarInt("Ingrese la edad: ")));
+                                            break;
+
+                                        case 2:
+                                            System.out.println("Lista completa de personas:");
+                                            for (Persona persona : listaPersonas) {
+                                                System.out.println(persona);
+                                            }
+                                            break;
+                                        
+                                        case 3:
+                                            datoExtra = seleccionarInt("Ingrese el indice: ");
+                                            
+                                            if (datoExtra < listaPersonas.size()) {
+                                                System.out.println("Elemento en indice " + datoExtra + ": " + listaPersonas.get(datoExtra));
+                                            } else {
+                                                System.out.println("Indice fuera de rango");
+                                            }
+                                            break;
+
+                                        case 4:
+                                            if (!listaPersonas.isEmpty()) {
+                                                Persona personaRemovida = listaPersonas.remove(0); // Eliminar el primer elemento
+                                                System.out.println("\nPersona removida: " + personaRemovida);
+                                            }
+                                            break;
+
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    break;
+                                }while(dato != 0);
+                                break;
+
+                            case 4:
+                                do {
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                            "1. Insertar \n" + //
+                                            "2. Imprimir la lista entera \n" + //
+                                            "3. Imprimir un elemento \n" + //
+                                            "4. Borrar un elemento \n" + //
+                                            "0. Salir del ejercicio \n" + //
+                                            "Seleccione: ");
+                        
+                                    switch (dato) {
+                                        case 0:
+                                            break;
+                        
+                                        case 1:
+                                            System.out.print("Ingrese el nombre: ");
+                                            cadena = input.nextLine();
+                                            listaEnlazadaPersonas.add(new Persona(cadena, seleccionarInt("Ingrese la edad: ")));
+                                            break;
+                        
+                                        case 2:
+                                            System.out.println("Lista completa de personas:");
+
+                                            for (Persona persona : listaEnlazadaPersonas) {
+                                                System.out.println(persona);
+                                            }
+                                            break;
+                        
+                                        case 3:
+                                            datoExtra = seleccionarInt("Ingrese el indice: ");
+                                            
+                                            if (datoExtra >= 0 && datoExtra < listaEnlazadaPersonas.size()) {
+                                                System.out.println("Elemento en indice " + datoExtra + ": " + listaEnlazadaPersonas.get(datoExtra));
+                                            } else {
+                                                System.out.println("Indice fuera de rango");
+                                            }
+                                            break;
+                        
+                                        case 4:
+                                            if (!listaEnlazadaPersonas.isEmpty()) {
+                                                int indice = seleccionarInt("Ingrese el indice a eliminar: ");
+                                                
+                                                if (indice >= 0 && indice < listaEnlazadaPersonas.size()) {
+                                                    Persona personaRemovida = listaEnlazadaPersonas.remove(indice);
+                                                    System.out.println("Persona removida: " + personaRemovida);
+                                                } else {
+                                                    System.out.println("Indice fuera de rango");
+                                                }
+                                            } else {
+                                                System.out.println("La lista esta vacia");
+                                            }
+                                            break;
+                        
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    System.out.println(" ");
+                                } while (dato != 0);                    
+                                break;
+                            
+                            case 5:
+                                do{
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                                                "1. Insertar \n" + //
+                                                                "2. Imprimir la lista entera \n" + //
+                                                                "3. Imprimir un elemento \n" + //
+                                                                "4. Borrar un elemento \n" + //
+                                                                "0. Salir del ejercicio \n" + //
+                                                                "Seleccione: ");
+
+                                    switch(dato) {
+                                        case 0:
+                                            break;
+                                        
+                                        case 1:
+                                            System.out.print("Ingrese el nombre: ");
+                                            cadena = input.nextLine();
+                                            hashPersonas.put(seleccionarInt("Ingrese el id: "), new Persona(cadena, seleccionarInt("Ingrese la edad: ")));
+                                            break;
+
+                                        case 2:
+                                            System.out.println("Lista completa de personas:");
+
+                                            for (Map.Entry<Integer, Persona> entry : hashPersonas.entrySet()) {
+                                                System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
+                                            }
+                                            break;
+
+                                        case 3:
+                                            int idBuscar = seleccionarInt("Seleccione el id: ");
+                                            System.out.println("\nElemento con clave " + idBuscar + ": " + hashPersonas.get(idBuscar));
+                                            break;
+
+                                        case 4:
+                                            int idEliminar = seleccionarInt("Seleccione el id para eliminar: ");
+                                            Persona eliminado = hashPersonas.remove(idEliminar);
+
+                                            if (eliminado != null) {
+                                                System.out.println("\nElemento con clave " + idEliminar + " eliminado: " + eliminado);
+                                            } else {
+                                                System.out.println("\nNo se encontró un elemento con clave " + idEliminar + " para eliminar.");
+                                            }
+                                            break;
+
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    System.out.println(" ");
+                                }while(dato != 0);
+                                break;
+
+                            case 6:
+                                do {
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Insertar \n" + //
+                                                            "2. Imprimir el TreeMap completo \n" + //
+                                                            "3. Imprimir un elemento \n" + //
+                                                            "4. Borrar un elemento \n" + //
+                                                            "0. Salir del ejercicio \n" + //
+                                                            "Seleccione: ");
+                        
+                                    switch (dato) {
+                                        case 0:
+                                            break;
+                        
+                                        case 1:
+                                            System.out.println("Ingrese el nombre: ");
+                                            cadena = input.nextLine();
+                                            mapaPersonas.put(seleccionarInt("Ingrese la clave (id): "), new Persona(cadena, seleccionarInt("Ingrese la edad: ")));
+                                            break;
+                        
+                                        case 2:
+                                            System.out.println("TreeMap completo de personas:");
+                                            
+                                            for (Map.Entry<Integer, Persona> entry : mapaPersonas.entrySet()) {
+                                                System.out.println("Clave: " + entry.getKey() + " - " + entry.getValue());
+                                            }
+                                            break;
+                        
+                                        case 3:
+                                        datoExtra = seleccionarInt("Ingrese la clave a buscar: ");
+                                            Persona persona = mapaPersonas.get(datoExtra);
+                                            
+                                            if (persona != null) {
+                                                System.out.println("Elemento con clave " + datoExtra + ": " + persona);
+                                            } else {
+                                                System.out.println("No se encontró ningún elemento con esa clave");
+                                            }
+                                            break;
+                        
+                                        case 4:
+                                            Persona personaEliminada = mapaPersonas.remove(seleccionarInt("Ingrese la clave a eliminar: "));
+
+                                            if (personaEliminada != null) {
+                                                System.out.println("Persona eliminada: " + personaEliminada);
+                                            } else {
+                                                System.out.println("No se encontro ningun elemento con esa clave");
+                                            }
+                                            break;
+                        
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    System.out.println(" ");
+                                } while (dato != 0);                    
+                                break;
+                            
+                            case 7:
+                                do{
+                                    dato = seleccionarInt("Elija un ejercicio \n" + //
+                                                                "1. Insertar \n" + //
+                                                                "2. Imprimir la lista entera \n" + //
+                                                                "3. Imprimir un elemento \n" + //
+                                                                "4. Borrar un elemento \n" + //
+                                                                "0. Salir del ejercicio \n" + //
+                                                                "Seleccione: ");
+
+                                    switch(dato) {
+                                        case 0:
+                                            break;
+                                        
+                                        case 1:
+                                            System.out.print("Ingrese el nombre: ");
+                                            cadena = input.nextLine();
+                                            int id = seleccionarInt("Ingrese el id: ");
+                                            arbol1.put(id, new Persona(cadena, seleccionarInt("Ingrese la edad: ")));
+                                            hashMapEnlazado.put(id, arbol1);
+                                            break;
+
+                                        case 2:
+                                            System.out.println("Lista completa de personas:");
+
+                                            for (Map.Entry<Integer, TreeMap<Integer, Persona>> entry : hashMapEnlazado.entrySet()) {
+                                                System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
+                                            }
+                                            break;
+
+                                        case 3:
+                                            int idBuscar = seleccionarInt("Seleccione el id: ");
+                                            System.out.println("\nElemento con clave " + idBuscar + ": " + hashMapEnlazado.get(idBuscar));
+                                            break;
+
+                                        case 4:
+                                            int idEliminar = seleccionarInt("Seleccione el id para eliminar: ");
+                                            TreeMap<Integer, Persona> eliminado = hashMapEnlazado.remove(idEliminar);
+                                            
+                                            if (eliminado != null) {
+                                                System.out.println("\nElemento con id " + idEliminar + " eliminado: " + eliminado);
+                                            } else {
+                                                System.out.println("\nNo se encontro un elemento con clave " + idEliminar + " para eliminar");
+                                            }
+                                            break;
+
+                                        default:
+                                            System.out.println("Ingrese una opcion valida");
+                                            break;
+                                    }
+                                    System.out.println(" ");
+                                }while(dato != 0);
+                                break;
+                            
                             default:
                                 System.out.println("Debe ingresar una opcion del menu");
                                 break;
