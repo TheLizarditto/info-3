@@ -6,6 +6,7 @@ import lista.ListaT;
 import recursividad.*;
 import arbolBinario.*;
 import arbolAVL.*;
+import arbolRojinegro.*;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -60,6 +61,9 @@ public class Main {
         // variables del proyecto 7
         ArbolAVL arbolAVL = new ArbolAVL();
         boolean banderaArbolAVL = false;
+
+        //variables del proyecto 8
+        ArbolRojinegro arbolRojinegro = new ArbolRojinegro();
         
 
         
@@ -582,6 +586,38 @@ public class Main {
                         System.out.println(" ");
                     } while (seleccionEjercicio != 0);
                 break;
+
+                case 8:
+                    do {
+                        seleccionEjercicio = seleccionarInt("Elija un ejercicio \n" + //
+                                                            "1. Insertar valores \n" + //
+                                                            "2. Verificacion de propiedades \n" + //   
+                                                            "3. Calcular altura \n" + //                                               
+                                                            "0. Salir del proyecto \n" + //
+                                                            "Seleccione: ");
+                        
+                        switch(seleccionEjercicio) {
+                            case 0:
+                                break;
+
+                            case 1:
+                                arbolRojinegro.insertar(seleccionarInt("Ingrese el valor para insertar: "));                    
+                                break;
+                            
+                            case 2:
+                                break;
+
+                            case 3:
+                                break;
+
+                            default:
+                                System.out.println("Debe ingresar una opcion del menu");
+                                break;
+                        }
+
+                        System.out.println(" ");
+                    } while (seleccionEjercicio != 0);
+                    break;
 
                 default:
                     System.out.println("Debe ingresar una opcion del menu");
